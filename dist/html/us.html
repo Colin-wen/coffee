@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/us.css">
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2GeXu4XXubshixm06yKgFCUuROxidLkt"></script>
+
+
+</head>
+<body>
+    <header>
+        <div class="con clear">
+            <h1>
+                <img src="../images/logo.png" alt="">
+            </h1>
+            <ul>
+                <li><a href="../html/index.html">首页</a></li>
+                <li><a href="../html/about.html">关于我们</a></li>
+                <li><a href="../html/Product.html">产品介绍</a></li>
+                <li><a href="../html/team.html">我们团队</a></li>
+                <li><a class="arctive" href="../html/us.html">联系我们</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div id="banner">
+        <div class="imges">
+            <img class="lb" src="../images/index-banner.png" alt="">
+            <img class="lb" src="../images/index-about-banner.png" alt="">
+            <img class="lb" src="../images/index-product-banner.png" alt="">
+            <img class="lb" src="../images/index-team-banner.png" alt="">
+            <img class="lb" src="../images/index-us-banner.png" alt="">
+            <button class="left">〈</button>
+            <button class="right">〉</button>
+            <ul>
+                <li dy="0" class="active"></li>
+                <li dy="1"></li>
+                <li dy="2"></li>
+                <li dy="3"></li>
+                <li dy="4"></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div id="us">
+        <div class="con clear">
+            <ul class="clear first">
+                <li>
+                    <div class="clear">
+                        <p class="arctive"></p>
+                        <h3>联系我们</h3>
+                    </div>
+                    <h4>Company profile</h4>
+                </li>
+            </ul>
+            <dl class="latte clear">
+                <dd class="top">
+                    <h3>当前位置><span>首页></span>联系我们</h3>
+                    <h4></h4>
+                </dd>
+                <dt>
+                    <div id="l-map"></div>
+                    <!-- <img src="../images/map-2.png" alt=""> -->
+                </dt>
+                <dd class=bottom>
+                    <ul class="clear">
+                        <li class="clear">
+                            <i class="iconfont">&#xe623;</i>
+                            <div class="right">
+                                <h2>咨询热线</h2>
+                                <p>Information Hotline</p>
+                                <h3>重庆：+86 023-867-7848</h3>
+                                <p>（09：30~18：30 北京时间）</p>
+                            </div>
+                        </li>
+                        <li class="clear">
+                            <i class="iconfont">&#xe633;</i>
+                            <div class="right">
+                                <h2>公司地址</h2>
+                                <p>Company address</p>
+                                <h3>地址：重庆大坪龙湖时代天街3号写字楼2407室</h3>
+                                <p>（09：30~18：30 北京时间）</p>
+                            </div>
+                        </li>
+                        <li class="clear">
+                            <i class="iconfont mail">&#xe711;</i>
+                            <div class="right">
+                                <h2>公司邮箱</h2>
+                                <p>E-mail</p>
+                                <h3>邮箱：info@haitouglobal.com</h3>
+                                <p>（09：30~18：30 北京时间）</p>
+                            </div>
+                        </li>
+                    </ul>
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="con clear">
+            <p>
+                Copyright © 重庆duzu有限公司 | duzu备案号 33010602001878 号 版权所有：重庆戈登有限公司
+            </p>
+            <h2>
+                <img src="../images/footer-logo_02.png" alt="">
+            </h2>
+        </div>
+    </footer>
+
+
+
+    <script>
+                var ban = document.getElementById("banner")
+        var con = ban.firstElementChild;
+        var btns = document.getElementsByTagName("button");
+        var ul = con.lastElementChild;
+        var lis1 = ul.children;
+        var count = 0
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].onclick = function () {
+                if (this.innerHTML == "〉") {
+                    foo(1)
+                } else {
+                    foo(-1)
+                }
+            }
+        }
+        for (var j = 0; j < lis1.length; j++) {
+            lis1[j].onclick = function () {
+                count = parseInt(this.getAttribute("dy"));
+    
+                con.style.marginLeft = (-100 * count) + "%";
+                for (var j = 0; j < lis1.length; j++) {
+                    lis1[j].className = ""
+                }
+                lis1[count].className = "active";
+            }
+        }
+        function foo(x) {
+            count += x;
+            if (count == 5) {
+                count = 0
+            } else if (count == -1) {
+                count = 4;
+            }
+            con.style.marginLeft = (-100 * count) + "%";
+            for (var j = 0; j < lis1.length; j++) {
+                lis1[j].className = ""
+            }
+            lis1[count].className = "active";
+        }
+
+    </script>
+</body>
+</html>
+<script type="text/javascript">
+	// 百度地图API功能
+	var sContent ="重庆市九龙坡区科园一路2号";
+	var map = new BMap.Map("l-map");
+	var point = new BMap.Point(106.491281,29.537841);
+	map.centerAndZoom(point, 15);
+	var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+	map.openInfoWindow(infoWindow,point); //开启信息窗口
+	document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + infoWindow.getContent();
+</script>
